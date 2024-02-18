@@ -1,0 +1,27 @@
+<template>
+    <div class=" w-full lg:inline-block hover:bg-gray-900 p-2 px-4 lg:pr-6 rounded-full cursor-pointer transition duration-200 ease-in-out">
+        <div class=" flex items-center">
+            <img class="rounded-full" width="55"  :src="profileAvatar" />
+            <div class=" lg:block hidden pl-4 mt-0.5">
+                <div class=" flex flex-col">
+                    <span class=" text-white font-bold text-[18px]">
+                        {{ name }}
+                    </span>
+                    <span class=" text-gray-500 font-normal text-[18px]">
+                        @{{ username }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+
+const name = ref('Cristobal Pavez')
+const username = ref('MahiruDev')
+const profileAvatar = ref(`https://picsum.photos/200`)
+
+</script>
