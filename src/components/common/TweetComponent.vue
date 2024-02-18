@@ -1,5 +1,5 @@
 <template>
-    <div class=" hover:bg-gray-950 cursor-pointer relative flex border-b border-b-gray-800 mt-2">
+    <div class=" hover:bg-gray-950 cursor-pointer relative flex border-b border-b-gray-800">
         <div class="min-w-[60px]">
             <img class="rounded-full m-2 mt-3" width="50" :src="props.tweet.profileAvatar">
         </div>
