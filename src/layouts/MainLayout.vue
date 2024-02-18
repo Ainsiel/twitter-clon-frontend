@@ -5,11 +5,11 @@
                 <div class=" flex flex-col justify-between h-full">
                     <div>
                         <TwitterIcon />
-                        <MenuItem iconString="Home" />
+                        <MenuItem @click="router.push('/home')" iconString="Home" />
                         <MenuItem iconString="Explore" />
                         <MenuItem iconString="Notifications" />
                         <MenuItem iconString="Messages" />
-                        <MenuItem iconString="Profile" />
+                        <MenuItem @click="router.push({ name: 'profile', params: { username: username} })" iconString="Profile" />
                         <button @click="tweetButtonClicked"
                             class="lg:w-full mt-8 ml-2 text-white font-extrabold text-[22px] bg-[#1C9CEF] p-3 px-3 rounded-full cursor-pointer">
                             <span class="lg:block hidden">Tweet</span>
@@ -44,8 +44,9 @@ import TwitterIcon from '@/components/sidebar/TwitterIcon.vue'
 import TrendsComponent from '@/components/sidebar/TrendsComponent.vue'
 import Feather from 'vue-material-design-icons/Feather.vue';
 import { ref } from 'vue'
+import router from "@/router/index.js";
 
-
+const username = 'MahiruDev'
 
 const isPostModalEnabled = ref(false)
 
