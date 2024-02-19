@@ -16,8 +16,8 @@
                     </button>
                 </div>
             </div>
-            <div class="pb-3">{{ props.tweet.content }}</div>
-            <div class="flex items-center justify-between mt-4 w-4/5">
+            <div class=" pb-1">{{ props.tweet.content }}</div>
+            <div class="flex items-center justify-between w-4/5">
                 <div class="flex hover:bg-gray-800 rounded-full cursor-pointer relative m-1">
                     <div class=" flex p-2">
                         <MessageOutline fillColor="#5e5c5c" :size="18" />

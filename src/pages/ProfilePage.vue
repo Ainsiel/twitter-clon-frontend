@@ -28,13 +28,13 @@ const getTweets = (type) => {
         tweets.value = testData.filter((tweet) => tweet.id % 2 === 0)
     } else if (type === 'Replies') {
         console.log('Fetch Replies')
-        tweets.value = testData.filter((tweet) => tweet.id % 2 != 0)
+        tweets.value = testData.filter((tweet) => tweet.id % 2 !== 0)
     } else if (type === 'Retweets') {
         console.log('Fetch Retweets')
         tweets.value = testData.filter((tweet) => tweet.id % 3 === 0)
     } else if (type === 'Likes') {
         console.log('Fetch Likes')
-        tweets.value = testData.filter((tweet) => tweet.id % 3 != 0)
+        tweets.value = testData.filter((tweet) => tweet.id % 3 !== 0)
     }
 }
 
@@ -150,6 +150,7 @@ const testProfile = {
     bio: 'Bio Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
     location: 'Temuco, Chile',
     website: 'Github.com/MahiruDev',
+    proffesional: 'Web developer',
     birthDate: new Date().toLocaleDateString(),
     createdAt: new Date().toLocaleDateString(),
     avatarURL: `https://picsum.photos/400`,
