@@ -95,7 +95,7 @@ import WebsiteIcon from 'vue-material-design-icons/LinkVariant.vue';
 import BirthdateIcon from 'vue-material-design-icons/CakeVariant.vue';
 import JoinedIcon from 'vue-material-design-icons/CalendarMonthOutline.vue';
 import { ref } from 'vue';
-
+import router from "@/router/index.js";
 
 const props = defineProps({
     profile: Object
@@ -116,10 +116,12 @@ const onFollowClicked = () => {
 }
 
 const onFollowingClick = () => {
-    console.log('Following page')
+    const url = '/follows/'.concat(props.profile.username).concat('/Following')
+    router.push(url)
 }
 
 const onFollowersClick = () => {
-    console.log('Followers page')
+    const url = '/follows/'.concat(props.profile.username).concat('/Followers')
+    router.push(url)
 }
 </script>

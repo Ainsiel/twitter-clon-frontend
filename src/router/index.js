@@ -23,6 +23,11 @@ const router = createRouter({
       name: 'profile',
       component: () => import('@/pages/ProfilePage.vue')
     },
+    {
+      path: '/follows/:username/:type',
+      name: 'follows',
+      component: () => import('@/pages/FollowsPage.vue')
+    },
   ]
 })
 
