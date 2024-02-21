@@ -1,6 +1,6 @@
 <template>
     <MainLayout>
-        <ProfileLayout @top-nav-clicked="getTweets" :profile="profile">
+        <ProfileLayout @top-nav-clicked="getTweets" :profile="profile" @show-edit-profile-modal="(b) => isEditProfileModalEnabled = b">
             <div class="text-white">
                 <div class="flex" v-for="tweet in tweets" :key="tweet.id">
                     <Tweet :tweet="tweet" />
@@ -8,6 +8,9 @@
             </div>
         </ProfileLayout>
     </MainLayout>
+    <div v-if="isEditProfileModalEnabled">
+        <EditProfileModal @show-edit-profile-modal="(b) => isEditProfileModalEnabled = b" />
+    </div>
 </template>
   
 <script setup>
@@ -16,9 +19,11 @@ import { useRoute } from 'vue-router';
 import MainLayout from '@/layouts/MainLayout.vue';
 import ProfileLayout from '@/layouts/ProfileLayout.vue';
 import Tweet from '@/components/common/TweetComponent.vue';
+import EditProfileModal from '@/components/profile/EditProfileModal.vue';
 
 const route = useRoute();
 const tweets = ref([])
+const isEditProfileModalEnabled = ref(false)
 const profile = ref({})
 const fetchUsername = ref('')
 

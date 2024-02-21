@@ -22,7 +22,7 @@
                 <!-- Button -->
                 <div class="flex flex-col text-right">
                     <div v-if="isUserProfile">
-                        <button @click="onEditProfileClicked"
+                        <button @click="$emit('showEditProfileModal')"
                             class=" justify-center  max-h-max whitespace-nowrap focus:outline-none  focus:ring max-w-max border bg-transparent border-gray-600 text-white hover:bg-gray-900 flex items-center hover:shadow-lg font-bold py-2 px-4 rounded-full mr-0 ml-auto">
                             Edit Profile
                         </button>
@@ -104,9 +104,6 @@ const props = defineProps({
 const isUserProfile = ref(true)
 const isFollowing = ref(false)
 
-const onEditProfileClicked = () => {
-    console.log("Edit Profile")
-}
 
 const onFollowingClicked = () => {
     console.log('Following')
