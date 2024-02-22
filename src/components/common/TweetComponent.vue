@@ -1,5 +1,5 @@
 <template>
-    <div class=" hover:bg-gray-950 cursor-pointer relative flex border-b border-b-gray-800">
+    <div @click="goToTweetPage" class=" hover:bg-gray-950 cursor-pointer relative flex border-b border-b-gray-800">
         <div class="min-w-[60px]">
             <img class="rounded-full m-2 mt-3" width="50" :src="props.tweet.profileAvatar">
         </div>
@@ -43,7 +43,14 @@ import MessageOutline from 'vue-material-design-icons/MessageOutline.vue'
 import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import RetweetButton from '@/components/common/RetweetButton.vue';
 import LikeButton from '@/components/common/LikeButton.vue';
+import router from "@/router/index.js";
 
 const props = defineProps({ tweet: Object });
+
+const goToTweetPage = () => {
+    console.log('Tweet Page: ', props.tweet.id)
+    const url = '/tweet/'.concat(String(props.tweet.id))
+    router.push(url)
+}
 
 </script>

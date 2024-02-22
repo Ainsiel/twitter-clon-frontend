@@ -28,6 +28,11 @@ const router = createRouter({
       name: 'follows',
       component: () => import('@/pages/FollowsPage.vue')
     },
+    {
+      path: '/tweet/:id',
+      name: 'tweet',
+      component: () => import('@/pages/TweetPage.vue')
+    },
   ]
 })
 
