@@ -6,7 +6,7 @@
                     <img class="rounded-full m-2 mt-3" width="50" :src="props.tweet.profileAvatar">
                 </div>
                 <div class=" flex flex-col pl-2 mt-0.5 mb-1.5">
-                    <div class=" text-white font-bold text-lg">{{ props.tweet.profileName }}</div>
+                    <div class=" text-white font-bold text-lg"><a :href="'/profile/'.concat(props.tweet.profileUsername)" class="no-underline hover:underline">{{ props.tweet.profileName }}</a></div>
                     <span class=" text-gray-500 font-normal text-base">@{{ props.tweet.profileUsername }}</span>
                 </div>
             </div>

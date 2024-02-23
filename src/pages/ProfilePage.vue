@@ -3,13 +3,16 @@
         <ProfileLayout @top-nav-clicked="getTweets" :profile="profile" @show-edit-profile-modal="(b) => isEditProfileModalEnabled = b">
             <div class="text-white">
                 <div class="flex" v-for="tweet in tweets" :key="tweet.id">
-                    <Tweet :tweet="tweet" />
+                    <Tweet :tweet="tweet" @show-reply-modal="(b) => isReplyModalEnabled = b" />
                 </div>
             </div>
         </ProfileLayout>
     </MainLayout>
     <div v-if="isEditProfileModalEnabled">
         <EditProfileModal @show-edit-profile-modal="(b) => isEditProfileModalEnabled = b" />
+    </div>
+    <div v-if="isReplyModalEnabled">
+        <ReplyModal @show-reply-modal="(b) => isReplyModalEnabled = b" />
     </div>
 </template>
   
@@ -20,10 +23,12 @@ import MainLayout from '@/layouts/MainLayout.vue';
 import ProfileLayout from '@/layouts/ProfileLayout.vue';
 import Tweet from '@/components/common/TweetComponent.vue';
 import EditProfileModal from '@/components/profile/EditProfileModal.vue';
+import ReplyModal from '@/components/common/ReplyModal.vue';
 
 const route = useRoute();
 const tweets = ref([])
 const isEditProfileModalEnabled = ref(false)
+const isReplyModalEnabled = ref(false)
 const profile = ref({})
 const fetchUsername = ref('')
 

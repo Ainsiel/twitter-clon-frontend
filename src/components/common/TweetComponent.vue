@@ -1,12 +1,12 @@
 <template>
-    <div @click="goToTweetPage" class=" hover:bg-gray-950 cursor-pointer relative flex border-b border-b-gray-800">
+    <div class=" hover:bg-gray-950 cursor-pointer relative flex border-b border-b-gray-800">
         <div class="min-w-[60px]">
             <img class="rounded-full m-2 mt-3" width="50" :src="props.tweet.profileAvatar">
         </div>
         <div class="p-2 w-full">
             <div class="font-extrabold flex items-center justify-between mt-0.5 mb-1.5">
                 <div class="flex items-center">
-                    <div class=" text-white font-bold text-[15px]">{{ props.tweet.profileName }}</div>
+                    <div class=" text-white font-bold text-[15px]"><a :href="'/profile/'.concat(props.tweet.profileUsername)" class="no-underline hover:underline">{{ props.tweet.profileName }}</a></div>
                     <span class=" text-gray-500 font-normal text-[15px] pl-2">@{{ props.tweet.profileUsername }}</span>
                     <span class=" text-gray-500 font-normal text-[15px] pl-2"> · {{ props.tweet.createdAt }}</span>
                 </div>
@@ -16,10 +16,10 @@
                     </button>
                 </div>
             </div>
-            <div class=" pb-1">{{ props.tweet.content }}</div>
+            <div @click="goToTweetPage" class=" pb-1">{{ props.tweet.content }}</div>
             <div class="flex items-center justify-between w-4/5">
                 <div class="flex hover:bg-gray-800 rounded-full cursor-pointer relative m-1">
-                    <div class=" flex p-2">
+                    <div @click="$emit('showReplyModal',true)" class=" flex p-2">
                         <MessageOutline fillColor="#5e5c5c" :size="18" />
                         <span class=" text-sm font-normal text-[#5e5c5c] ml-1">{{ props.tweet.replies }}</span>
                     </div>

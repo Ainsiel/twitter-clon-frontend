@@ -6,7 +6,7 @@
         <div class="p-2 w-full flex flex-col">
             <div class=" flex justify-between mt-0.5 mb-1.5">
                 <div class="flex flex-col">
-                    <div class=" text-white font-bold text-[15px]">{{ props.profile.name }}</div>
+                    <div class=" text-white font-bold text-[15px]"><a :href="'/profile/'.concat(props.profile.username)" class="no-underline hover:underline">{{ props.profile.name }}</a></div>
                     <span class=" text-gray-500 font-normal text-[15px]">@{{ props.profile.username }}</span>
                 </div>
                 <div class="hover:bg-gray-800 rounded-full cursor-pointer relative">
