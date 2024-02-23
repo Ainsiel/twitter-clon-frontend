@@ -30,7 +30,7 @@
         </div>
         <div class=" flex items-center justify-around w-full mt-2">
             <div class="flex hover:bg-gray-800 rounded-full cursor-pointer relative m-1">
-                <div class=" flex p-2">
+                <div @click="$emit('showReplyModal',true)" class=" flex p-2">
                     <MessageOutline fillColor="#5e5c5c" :size="22" />
                     <span class=" text-base font-normal text-[#5e5c5c] ml-1">{{ props.tweet.replies }}</span>
                 </div>

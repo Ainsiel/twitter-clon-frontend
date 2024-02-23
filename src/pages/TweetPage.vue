@@ -9,7 +9,7 @@
                 </div>
                 <div>
                     <div class="flex" v-for="tweet in tweets" :key="tweet.id">
-                        <TweetDetails :tweet="tweet" />
+                        <TweetDetails :tweet="tweet" @show-reply-modal="(b) => isReplyModalEnabled = b" />
                     </div>
                 </div>
                 <div>

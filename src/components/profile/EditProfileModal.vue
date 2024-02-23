@@ -126,6 +126,7 @@ const proffesional = ref('');
 const location = ref('');
 const website = ref('');
 const birthdate = ref('');
+const emit = defineEmits(['showEditProfileModal'])
 
 const isValidProfile = computed(() => {
     return (
@@ -152,5 +153,6 @@ const saveProfile = () => {
         birthdate: birthdate.value
     };
     console.log('Saved Profile:', profile);
+    emit('showEditProfileModal',false)
 };
 </script>
