@@ -1,5 +1,5 @@
 <template>
-    <div class=" hover:bg-gray-950 cursor-pointer relative flex border-b border-b-gray-800">
+    <div class=" hover:bg-gray-950 cursor-pointer relative flex border-b border-b-gray-800 w-full">
         <div class="min-w-[60px]">
             <img class="rounded-full m-2 mt-3" width="50" :src="props.tweet.profileAvatar">
         </div>
@@ -8,7 +8,7 @@
                 <div class="flex items-center">
                     <div class=" text-white font-bold text-[15px]"><a :href="'/profile/'.concat(props.tweet.profileUsername)" class="no-underline hover:underline">{{ props.tweet.profileName }}</a></div>
                     <span class=" text-gray-500 font-normal text-[15px] pl-2">@{{ props.tweet.profileUsername }}</span>
-                    <span class=" text-gray-500 font-normal text-[15px] pl-2"> · {{ props.tweet.createdAt }}</span>
+                    <span class=" text-gray-500 font-normal text-[15px] pl-2"> · {{ props.tweet.tweetedAt }}</span>
                 </div>
                 <div class="hover:bg-gray-800 rounded-full cursor-pointer relative">
                     <button type="button" class="block p-2">
