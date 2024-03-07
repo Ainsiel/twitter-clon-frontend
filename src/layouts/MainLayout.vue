@@ -9,7 +9,7 @@
                         <MenuItem iconString="Explore" />
                         <MenuItem iconString="Notifications" />
                         <MenuItem iconString="Messages" />
-                        <MenuItem @click="router.push({ name: 'profile', params: { username: username} })" iconString="Profile" />
+                        <MenuItem @click="router.push({ name: 'profile', params: { username: profile.username} })" iconString="Profile" />
                         <button @click="tweetButtonClicked"
                             class="lg:w-full mt-8 ml-2 text-white font-extrabold text-[22px] bg-[#1C9CEF] p-3 px-3 rounded-full cursor-pointer">
                             <span class="lg:block hidden">Tweet</span>
@@ -19,7 +19,7 @@
                         </button>
                     </div>
                     <div class=" mb-5">
-                        <ProfileItem />
+                        <ProfileItem @click="logout()" :profile="profile" />
                     </div>
                 </div>
             </div>
@@ -43,14 +43,31 @@ import ProfileItem from '@/components/sidebar/ProfileItem.vue'
 import TwitterIcon from '@/components/sidebar/TwitterIcon.vue'
 import TrendsComponent from '@/components/sidebar/TrendsComponent.vue'
 import Feather from 'vue-material-design-icons/Feather.vue';
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import router from "@/router/index.js";
+import { useStore } from "vuex";
+import { getProfile } from '@/utils/fetch.js'
 
-const username = 'MahiruDev'
+
+const profile = ref({})
+const store = useStore()
 
 const isPostModalEnabled = ref(false)
 
 const tweetButtonClicked = () => {
     isPostModalEnabled.value = true
 }
+
+const logout = () => {
+    store.dispatch('logout')
+}
+
+onMounted(async () => {
+    if(!store.getters.isAuthenticated) {
+        router.push('/')
+    } 
+    const response = await getProfile()
+    profile.value = response
+
+})
 </script>

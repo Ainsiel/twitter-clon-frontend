@@ -15,15 +15,16 @@ import SignUpModal from "@/components/login/SignUpModal.vue"
 import SignInModal from "@/components/login/SignInModal.vue"
 import { ref, onMounted } from 'vue';
 import router from "@/router/index.js";
+import { useStore } from "vuex";
 
 const isAuthenticated = ref(false);
 const isSignUpModalEnabled = ref(false)
 const isSignInModalEnabled = ref(false)
 
+const store = useStore()
+
 const signUpGithub = () => {
     console.log('Sign up with Github')
-    isAuthenticated.value = true
-    goToHome()
 }
 
 const goToHome = () => {
@@ -33,7 +34,7 @@ const goToHome = () => {
 }
 
 onMounted(() => {
-    //isAuthenticated.value = true
+    isAuthenticated.value = store.getters.isAuthenticated
     goToHome()
 })
 </script>

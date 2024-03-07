@@ -25,11 +25,11 @@ const store = createStore({
 
     async registerUser({ commit }, userData) {
       try {
-        const { tokenResponse } = register(userData)
-        if (tokenResponse != null && tokenResponse !== "") {
+        const token = await register(userData)
+        if (token != null && token !== "") {
           commit('setAuthentication', true)
-          commit('setToken', tokenResponse)
-          setAuthToken(tokenResponse)
+          commit('setToken', token)
+          setAuthToken(token)
           console.log('User registered successfully: ')
           router.push('/home')
         } else {
@@ -42,11 +42,11 @@ const store = createStore({
 
     async loginUser({ commit }, userData) {
       try {
-        const { tokenResponse } = login(userData)
-        if (tokenResponse != null && tokenResponse !== "") {
+        const token = await login(userData)
+        if (token != null && token !== "") {
           commit('setAuthentication', true)
-          commit('setToken', tokenResponse)
-          setAuthToken(tokenResponse)
+          commit('setToken', token)
+          setAuthToken(token)
           console.log('User logged successfully:')
           router.push('/home')
         } else {

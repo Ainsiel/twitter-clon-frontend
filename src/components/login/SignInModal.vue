@@ -64,10 +64,12 @@ import Close from 'vue-material-design-icons/Close.vue';
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue';
 import Twitter from 'vue-material-design-icons/Twitter.vue';
 import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
 
 const username = ref('');
 const password = ref('');
 const emit = defineEmits(['showSignInModal'])
+const store = useStore()
 
 const isValidAccount = computed(() => {
     return (
@@ -76,7 +78,7 @@ const isValidAccount = computed(() => {
     )
 });
 
-const signIn = () => {
+const signIn = async () => {
     if (!isValidAccount.value) return;
 
     const user = {
@@ -84,7 +86,7 @@ const signIn = () => {
         password: password.value,
     };
 
-    console.log('Sign in: ', user);
+    await store.dispatch('loginUser', user)
     emit('showSignInModal', false)
 };
 </script>

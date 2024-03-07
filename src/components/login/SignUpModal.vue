@@ -87,12 +87,15 @@ import Close from 'vue-material-design-icons/Close.vue';
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue';
 import Twitter from 'vue-material-design-icons/Twitter.vue';
 import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
+
 
 const username = ref('');
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
 const emit = defineEmits(['showSignUpModal'])
+const store = useStore()
 
 const isValidAccount = computed(() => {
     return (
@@ -103,7 +106,7 @@ const isValidAccount = computed(() => {
     )
 });
 
-const createAccount = () => {
+const createAccount = async () => {
     if (!isValidAccount.value) return;
 
     const user = {
@@ -112,7 +115,7 @@ const createAccount = () => {
         password: password.value,
     };
 
-    console.log('Create account:', user);
+    await store.dispatch('registerUser', user)
     emit('showSignUpModal', false)
 };
 </script>
