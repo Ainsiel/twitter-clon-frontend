@@ -20,21 +20,31 @@
 <script setup>
 import HeartOutline from 'vue-material-design-icons/HeartOutline.vue'
 import { ref, onMounted } from 'vue';
+import { postLike, deleteLike } from '@/utils/fetch.js'
 
 const props = defineProps({
     liked: Boolean,
-    likes: Number
+    likes: Number,
+    tweetId: Number
 })
 
 const isLiked = ref(false)
 const numLikes = ref(0)
 let isUserLiked = false
 
-const onLikeClicked = () => {
+const onLikeClicked = async () => {
     if (isUserLiked) {
         numLikes.value = isLiked.value ? props.likes - 1 : props.likes
     } else {
         numLikes.value = isLiked.value ? props.likes : props.likes + 1
+    }
+
+    if (isLiked.value) {
+        const response = await deleteLike(props.tweetId)
+        console.log("Delete like: ", response)
+    } else {
+        const response = await postLike(props.tweetId)
+        console.log("Post like: ", response)
     }
 
     isLiked.value = !isLiked.value

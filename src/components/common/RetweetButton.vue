@@ -20,23 +20,33 @@
 <script setup>
 import Sync from 'vue-material-design-icons/Sync.vue'
 import { ref, onMounted } from 'vue';
+import { postRetweet, deleteRetweet } from '@/utils/fetch.js'
 
 const props = defineProps({
     retweeted: Boolean,
-    retweets: Number
+    retweets: Number,
+    tweetId: Number
 })
 
 const isRetweted = ref(false)
 const numRetweets = ref(0)
 let isUserRetweeted = false
 
-const onRetweetClicked = () => {
+const onRetweetClicked = async () => {
     if (isUserRetweeted) {
         numRetweets.value = isRetweted.value ? props.retweets - 1 : props.retweets
     } else {
         numRetweets.value = isRetweted.value ? props.retweets : props.retweets + 1
     }
     
+    if (isRetweted.value) {
+        const response = await deleteRetweet(props.tweetId)
+        console.log("Delete retweet: ", response)
+    } else {
+        const response = await postRetweet(props.tweetId)
+        console.log("Post retweet: ", response)
+    }
+
     isRetweted.value = !isRetweted.value
     console.log("Retweet Clicked: ", isRetweted.value, numRetweets.value)
 }

@@ -24,8 +24,8 @@
                         <span class=" text-sm font-normal text-[#5e5c5c] ml-1">{{ props.tweet.replies }}</span>
                     </div>
                 </div>
-                <RetweetButton :retweeted="props.tweet.isRetweeted" :retweets="props.tweet.retweets" />
-                <LikeButton :liked="props.tweet.isLiked" :likes="props.tweet.likes" />
+                <RetweetButton :retweeted="props.tweet.isRetweeted" :retweets="props.tweet.retweets" :tweetId="props.tweet.id" />
+                <LikeButton :liked="props.tweet.isLiked" :likes="props.tweet.likes" :tweetId="props.tweet.id" />
                 <div class="flex hover:bg-gray-800 rounded-full cursor-pointer relative">
                     <div class=" flex p-2">
                         <ChartBar fillColor="#5e5c5c" :size="18" />

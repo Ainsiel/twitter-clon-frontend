@@ -12,6 +12,8 @@ const PROFILE_USER_URL = '/user'
 const TWEET_URL = '/tweets'
 const FOR_YOU_URL = '/ForYou'
 const FOLLOWING_URL = '/Following'
+const RETWEET_URL = '/retweets/'
+const LIKES_URL = '/likes/'
 
 let tokenFetch = null
 
@@ -63,6 +65,42 @@ export const getForYouTweets = async () => {
 export const getFollowingTweets = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL.concat(TWEET_URL).concat(FOLLOWING_URL)}`)
+    return response.data
+  } catch (error) {
+    throw error.response.data
+  }
+}
+
+export const postRetweet = async (id) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL.concat(TWEET_URL).concat(RETWEET_URL).concat(String(id))}`)
+    return response.data
+  } catch (error) {
+    throw error.response.data
+  }
+}
+
+export const deleteRetweet = async (id) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL.concat(TWEET_URL).concat(RETWEET_URL).concat(String(id))}`)
+    return response.data
+  } catch (error) {
+    throw error.response.data
+  }
+}
+
+export const postLike = async (id) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL.concat(TWEET_URL).concat(LIKES_URL).concat(String(id))}`)
+    return response.data
+  } catch (error) {
+    throw error.response.data
+  }
+}
+
+export const deleteLike = async (id) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL.concat(TWEET_URL).concat(LIKES_URL).concat(String(id))}`)
     return response.data
   } catch (error) {
     throw error.response.data
