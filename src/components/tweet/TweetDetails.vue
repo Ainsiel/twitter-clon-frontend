@@ -19,16 +19,13 @@
         <div class=" px-4 py-2 text-white text-lg">{{ props.tweet.content }}</div>
         <div class=" flex px-4 text-[#5e5c5c] font-normal">
             <div>
-                03:08 PM ·
+                {{props.tweet.tweetedAt}} ·
             </div>
             <div class=" pl-1">
-                Dec 13, 2023 ·
-            </div>
-            <div class=" pl-1">
-                4.3M Views
+                {{props.tweet.analytics}} Views
             </div>
         </div>
-        <div class=" flex items-center justify-around w-full mt-2">
+        <div class=" flex items-center justify-around w-full mt-2 px-5">
             <div class="flex hover:bg-gray-800 rounded-full cursor-pointer relative m-1">
                 <div @click="$emit('showReplyModal',true)" class=" flex p-2">
                     <MessageOutline fillColor="#5e5c5c" :size="22" />
@@ -77,6 +74,8 @@ import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 import Sync from 'vue-material-design-icons/Sync.vue'
 import HeartOutline from 'vue-material-design-icons/HeartOutline.vue'
 import { ref, onMounted } from 'vue';
+import { postLike, deleteLike } from '@/utils/fetch.js'
+import { postRetweet, deleteRetweet } from '@/utils/fetch.js'
 
 const props = defineProps({ tweet: Object });
 
@@ -88,22 +87,37 @@ const isLiked = ref(false)
 const numLikes = ref(0)
 let isUserLiked = false
 
-const onRetweetClicked = () => {
+const onRetweetClicked = async () => {
     if (isUserRetweeted) {
         numRetweets.value = isRetweted.value ? props.tweet.retweets - 1 : props.tweet.retweets
     } else {
         numRetweets.value = isRetweted.value ? props.tweet.retweets : props.tweet.retweets + 1
     }
 
+    if (isRetweted.value) {
+        const response = await deleteRetweet(props.tweet.id)
+        console.log("Delete retweet: ", response)
+    } else {
+        const response = await postRetweet(props.tweet.id)
+        console.log("Post retweet: ", response)
+    }
+
     isRetweted.value = !isRetweted.value
     console.log("Retweet Clicked: ", isRetweted.value, numRetweets.value)
 }
 
-const onLikeClicked = () => {
+const onLikeClicked = async () => {
     if (isUserLiked) {
         numLikes.value = isLiked.value ? props.tweet.likes - 1 : props.tweet.likes
     } else {
         numLikes.value = isLiked.value ? props.tweet.likes : props.tweet.likes + 1
+    }
+    if (isLiked.value) {
+        const response = await deleteLike(props.tweet.id)
+        console.log("Delete like: ", response)
+    } else {
+        const response = await postLike(props.tweet.id)
+        console.log("Post like: ", response)
     }
 
     isLiked.value = !isLiked.value

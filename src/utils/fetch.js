@@ -106,3 +106,12 @@ export const deleteLike = async (id) => {
     throw error.response.data
   }
 }
+
+export const getTweetDetails = async (id) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL.concat(TWEET_URL).concat("/").concat(String(id))}`)
+    return response.data
+  } catch (error) {
+    throw error.response.data
+  }
+}
